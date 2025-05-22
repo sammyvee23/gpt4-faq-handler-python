@@ -3,7 +3,9 @@ from flask_login import login_required
 from app.auth import auth_bp, login_manager, limiter
 
 app = Flask(__name__)
-app.secret_key = 'your-secret-key'  # 🔒 Replace with a strong secret in production!
+import os
+app.secret_key = os.environ.get(fcb9677bebb8072990985d1ba627a16ddb6ab9615eacfbbf2939029714315d61)
+
 
 # Init extensions
 login_manager.init_app(app)

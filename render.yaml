@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ai-call-tool
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: SECRET-KEY
+        value: fcb9677bebb8072990985d1ba627a16ddb6ab9615eacfbbf2939029714315d61
