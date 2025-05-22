@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-flask
-openai
-=======
-
 Flask==2.3.2
 Flask-Login==0.6.3
 pymongo==4.6.1
 Werkzeug==2.3.7
 Flask-Limiter==3.5.1
->>>>>>> 9685e25 (Initial commit)
+openai
+
