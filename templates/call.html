@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>📱 Make a Phone Call</h2>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flash">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST" action="{{ url_for('make_call') }}">
+    <label for="phone_number">Phone Number (E.164 format):</label><br>
+    <input type="tel" name="phone_number" required><br><br>
+
+    <label for="script">What would you like the AI to say?</label><br>
+    <textarea name="script" rows="4" cols="50" required></textarea><br><br>
+
+    <button type="submit">📞 Call Now</button>
+  </form>
+{% endblock %}
+

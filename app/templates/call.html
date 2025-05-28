@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Make a Phone Call</h2>
+  <form method="post">
+    <label>Phone Number:</label><br>
+    <input type="text" name="phone_number" required><br><br>
+
+    <label>Call Script:</label><br>
+    <textarea name="script" rows="6" cols="50">Hello, this is an AI assistant from our nonprofit...</textarea><br><br>
+
+    <button type="submit">Start Call</button>
+  </form>
+{% endblock %}

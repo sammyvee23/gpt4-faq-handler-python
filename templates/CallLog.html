@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>📜 Call Log History</h2>
+<table>
+  <tr>
+    <th>To</th>
+    <th>Prompt</th>
+    <th>Script</th>
+    <th>Timestamp</th>
+    <th>SID</th>
+  </tr>
+  {% for log in logs %}
+  <tr>
+    <td>{{ log.to }}</td>
+    <td>{{ log.prompt }}</td>
+    <td>{{ log.generated_script }}</td>
+    <td>{{ log.timestamp }}</td>
+    <td>{{ log.call_sid }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

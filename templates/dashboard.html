@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Public Dashboard</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-  <div class="container">
-    <h1>📊 Public Dashboard</h1>
-    <p>Welcome to the Rosa AI live dashboard.</p>
+{% extends 'base.html' %}
 
-    <div class="card">
-      <h3>Recent Actions</h3>
-      <ul>
-        {% for log in logs %}
-          <li>
-            <strong>{{ log['action'] }}</strong> by {{ log['user'] }} at {{ log['timestamp'] }}
-          </li>
-        {% else %}
-          <li>No recent activity.</li>
-        {% endfor %}
-      </ul>
-    </div>
+{% block content %}
+ <div class="card">
+    <h2>📊 Recent Call Logs</h2>
+    <ul>
+      {% for log in logs %}
+        <li>{{ log['timestamp'] }} — {{ log['action'] }}</li>
+      {% else %}
+        <li>No logs yet.</li>
+      {% endfor %}
+    </ul>
   </div>
-</body>
-</html>
+{% endblock %}
+
+{% block content %}
+  <h2>📊 Public Dashboard</h2>
+  <p>Welcome to the Rosa AI live dashboard.</p>
+
+  <div class="card">
+    <h3>Recent Actions</h3>
+    <ul>
+      {% for log in logs %}
+        <li>
+          <strong>{{ log['action'] }}</strong> by {{ log['user'] }} at {{ log['timestamp'] }}
+        </li>
+      {% else %}
+        <li>No recent activity.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
+

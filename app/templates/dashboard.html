@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Public Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Public Dashboard</h1>
+    <p>Welcome to the Rosa AI live dashboard.</p>
+
+    <div class="card">
+      <h3>Recent Actions</h3>
+      <ul>
+        {% for log in logs %}
+          <li>
+            <strong>{{ log['action'] }}</strong> by {{ log['user'] }} at {{ log['timestamp'] }}
+          </li>
+        {% else %}
+          <li>No recent activity.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

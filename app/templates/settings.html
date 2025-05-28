@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Account Settings</h2>
+  <form>
+    <label>Display Name:</label><br>
+    <input type="text" name="name" value="Demo User"><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" value="you@example.com"><br><br>
+
+    <button type="submit">Update Settings</button>
+  </form>
+{% endblock %}

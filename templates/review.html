@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Welcome, {{ current_user.username }}!</h1>
+
+    <p>You are logged in as <strong>{{ current_user.role }}</strong>.</p>
+
+    {% if current_user.role == 'admin' %}
+        <h3>Admin Actions</h3>
+        <ul>
+            <li><a href="{{ url_for('auth.create_user') }}">➕ Create New User</a></li>
+            <li><a href="{{ url_for('auth.audit_logs') }}">📜 View Audit Logs</a></li>
+            <li><a href="{{ url_for('auth.export_logs') }}">⬇️ Export Audit Logs (CSV)</a></li>
+        </ul>
+    {% endif %}
+
+    <h3>User Actions</h3>
+    <ul>
+        <li><a href="{{ url_for('auth.change_password') }}">🔐 Change Password</a></li>
+        <li><a href="{{ url_for('auth.logout') }}">🚪 Logout</a></li>
+    </ul>
+</body>
+</html>
