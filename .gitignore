@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+.Python
+
+# Environment
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# Flask / local settings
+instance/
+*.db
+*.sqlite3
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Deployment artifacts
+*.egg-info/
+dist/
+build/
+
+# Render
+render.yaml
