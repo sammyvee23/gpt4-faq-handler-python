@@ -1,13 +1,26 @@
 {% extends 'base.html' %}
-{% block content %}
-  <h2>Make a Phone Call</h2>
-  <form method="post">
-    <label>Phone Number:</label><br>
-    <input type="text" name="phone_number" required><br><br>
 
-    <label>Call Script:</label><br>
-    <textarea name="script" rows="6" cols="50">Hello, this is an AI assistant from our nonprofit...</textarea><br><br>
+{% block content %}
+  <h2>📞 Make a Phone Call</h2>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flash">
+        {% for msg in messages %}
+          <li>{{ msg }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST">
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" name="phone_number" required placeholder="+1234567890">
+
+    <label for="script">Call Script Prompt:</label>
+    <textarea name="script" rows="6" required>Hello, this is an AI assistant from our nonprofit...</textarea>
 
     <button type="submit">Start Call</button>
   </form>
 {% endblock %}
+

@@ -1,5 +1,7 @@
+# main.py
+
 from flask import Flask, redirect, url_for, render_template, request, Response, flash
-from flask_login import login_required
+from flask_login import login_required, current_user
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from datetime import datetime
@@ -35,6 +37,7 @@ except Exception as e:
 
 db = client["Project_0"]
 audit_collection = db["audit_logs"]
+users_collection = db["users"]
 
 # ===========================
 # Routes
@@ -97,9 +100,24 @@ def call_logs():
     logs = db['call_logs'].find().sort("timestamp", -1)
     return render_template('call_logs.html', logs=logs)
 
-@app.route('/settings')
+@app.route('/settings', methods=['GET', 'POST'])
+@login_required
 def settings():
-    return render_template('settings.html', title="Settings")
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+
+        # Update in database
+        users_collection.update_one(
+            {"_id": current_user.id},
+            {"$set": {"username": name, "email": email}}
+        )
+
+        flash("Settings updated!")
+        return redirect(url_for('settings'))
+
+    user = users_collection.find_one({"_id": current_user.id})
+    return render_template('settings.html', title="Settings", user=user)
 
 @app.route('/analysis')
 def call_analysis():
@@ -111,5 +129,6 @@ def call_analysis():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
 
 

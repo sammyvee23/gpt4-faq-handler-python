@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
-
 {% block content %}
-  <h2>⚙️ Account Settings</h2>
+  <h2>Account Settings</h2>
+  <form method="POST">
+    <label>Display Name:</label><br>
+    <input type="text" name="name" value="{{ user.username }}"><br><br>
 
-  <p>This is where you’ll manage your account settings.</p>
+    <label>Email:</label><br>
+    <input type="email" name="email" value="{{ user.email }}"><br><br>
 
-  <ul>
-    <li>Change password</li>
-    <li>Manage user role (admin/user)</li>
-    <li>Configure notification preferences</li>
-  </ul>
+    <button type="submit">Update Settings</button>
+  </form>
 
-  <p>Feature implementation coming soon.</p>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flash">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
 {% endblock %}
+

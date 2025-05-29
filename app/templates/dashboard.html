@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Public Dashboard</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
   <div class="container">
     <h1>📊 Public Dashboard</h1>
     <p>Welcome to the Rosa AI live dashboard.</p>
@@ -14,7 +10,7 @@
       <ul>
         {% for log in logs %}
           <li>
-            <strong>{{ log['action'] }}</strong> by {{ log['user'] }} at {{ log['timestamp'] }}
+            <strong>{{ log['action'] }}</strong> by {{ log['user'] or "N/A" }} at {{ log['timestamp'] }}
           </li>
         {% else %}
           <li>No recent activity.</li>
@@ -22,5 +18,5 @@
       </ul>
     </div>
   </div>
-</body>
-</html>
+{% endblock %}
+

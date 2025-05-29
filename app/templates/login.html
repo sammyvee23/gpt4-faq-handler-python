@@ -1,32 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <h1>Login</h1>
+{% extends 'base.html' %}
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+{% block content %}
+  <h2>Login</h2>
 
-    <form method="POST" action="{{ url_for('auth.login') }}">
-        <label for="username">Username:</label><br>
-        <input type="text" name="username" required><br><br>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flash">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
 
-        <label for="password">Password:</label><br>
-        <input type="password" name="password" required><br><br>
+  <form method="POST" action="{{ url_for('auth.login') }}">
+    <label for="username">Username:</label>
+    <input type="text" name="username" required>
 
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required>
 
+    <button type="submit">Login</button>
+  </form>
+{% endblock %}

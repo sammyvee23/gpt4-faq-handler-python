@@ -1,13 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>Account Settings</h2>
-  <form>
-    <label>Display Name:</label><br>
+  <h2>⚙️ Account Settings</h2>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flash">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST" action="{{ url_for('settings') }}">
+    <label for="name">Display Name:</label><br>
     <input type="text" name="name" value="Demo User"><br><br>
 
-    <label>Email:</label><br>
+    <label for="email">Email:</label><br>
     <input type="email" name="email" value="you@example.com"><br><br>
 
     <button type="submit">Update Settings</button>
   </form>
 {% endblock %}
+

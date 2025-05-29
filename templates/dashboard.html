@@ -1,33 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
- <div class="card">
-    <h2>📊 Recent Call Logs</h2>
-    <ul>
-      {% for log in logs %}
-        <li>{{ log['timestamp'] }} — {{ log['action'] }}</li>
-      {% else %}
-        <li>No logs yet.</li>
-      {% endfor %}
-    </ul>
-  </div>
-{% endblock %}
-
-{% block content %}
-  <h2>📊 Public Dashboard</h2>
+<div class="dashboard">
+  <img src="{{ url_for('static', filename='rosa-logo.png') }}" alt="Logo" class="logo">
+  <h2>Dashboard</h2>
   <p>Welcome to the Rosa AI live dashboard.</p>
 
+  <div class="buttons">
+    <a href="{{ url_for('make_call') }}" class="button">📞 Make a Phone Call</a>
+    <a href="{{ url_for('call_analysis') }}" class="button">📊 Call Analysis</a>
+    <a href="{{ url_for('settings') }}" class="button">⚙️ Settings</a>
+  </div>
+
   <div class="card">
-    <h3>Recent Actions</h3>
+    <h3>Recent Activity</h3>
     <ul>
       {% for log in logs %}
         <li>
-          <strong>{{ log['action'] }}</strong> by {{ log['user'] }} at {{ log['timestamp'] }}
+          <strong>{{ log['action'] }}</strong> by {{ log['user'] or 'unknown' }} at {{ log['timestamp'] }}
         </li>
       {% else %}
         <li>No recent activity.</li>
       {% endfor %}
     </ul>
   </div>
+</div>
 {% endblock %}
 

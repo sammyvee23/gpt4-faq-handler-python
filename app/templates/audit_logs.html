@@ -1,52 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Audit Logs</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <h1>Audit Logs</h1>
+{% extends 'base.html' %}
 
-    <form method="GET" action="{{ url_for('auth.audit_logs') }}">
-        <label for="user">Filter by user:</label>
-        <input type="text" name="user" value="{{ request.args.get('user', '') }}">
-        
-        <label for="action">Filter by action:</label>
-        <input type="text" name="action" value="{{ request.args.get('action', '') }}">
+{% block content %}
+  <h2>📝 Audit Logs</h2>
 
-        <button type="submit">Filter</button>
-    </form>
+  <form method="GET" action="{{ url_for('auth.audit_logs') }}" class="card">
+    <label for="user">Filter by user:</label>
+    <input type="text" name="user" value="{{ request.args.get('user', '') }}">
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Timestamp</th>
-                <th>Action</th>
-                <th>User</th>
-                <th>Email</th>
-                <th>IP</th>
-                <th>User Agent</th>
-                <th>Level</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for log in logs %}
-            <tr>
-                <td>{{ log.timestamp }}</td>
-                <td>{{ log.action }}</td>
-                <td>{{ log.user }}</td>
-                <td>{{ log.email }}</td>
-                <td>{{ log.ip }}</td>
-                <td>{{ log.user_agent }}</td>
-                <td>{{ log.level }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
+    <label for="action">Filter by action:</label>
+    <input type="text" name="action" value="{{ request.args.get('action', '') }}">
+
+    <button type="submit">Filter</button>
+  </form>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Action</th>
+          <th>User</th>
+          <th>Email</th>
+          <th>IP</th>
+          <th>User Agent</th>
+          <th>Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for log in logs %}
+        <tr>
+          <td>{{ log.timestamp }}</td>
+          <td>{{ log.action }}</td>
+          <td>{{ log.user }}</td>
+          <td>{{ log.email }}</td>
+          <td>{{ log.ip }}</td>
+          <td>{{ log.user_agent }}</td>
+          <td>{{ log.level }}</td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="7">No logs found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
+  </div>
 
-    <p><a href="{{ url_for('auth.export_logs') }}">Download CSV</a></p>
-    <p><a href="{{ url_for('logout') }}">Logout</a></p>
-</body>
-</html>
-
+  <div class="card">
+    <p><a href="{{ url_for('auth.export_logs') }}">⬇️ Download CSV</a></p>
+  </div>
+{% endblock %}

@@ -1,4 +1,6 @@
-/* Base layout */
+/* =======================
+   Global Base Layout
+========================== */
 body {
   background: linear-gradient(to bottom, #1a0006, #000000);
   color: #F3E8E2;
@@ -7,7 +9,9 @@ body {
   padding: 0;
 }
 
-/* Header & logo */
+/* =======================
+   Header & Navigation
+========================== */
 header {
   background: #1a0006;
   text-align: center;
@@ -20,9 +24,12 @@ header {
   width: 140px;
   border-radius: 10px;
   box-shadow: 0 0 15px #B3001B;
+  transition: all 0.4s ease-in-out;
+}
+.logo img:hover {
+  animation: pulseGlow 2s infinite;
 }
 
-/* Navigation */
 nav {
   margin-top: 0.5rem;
 }
@@ -39,16 +46,24 @@ nav a {
 nav a:hover {
   border-color: #B3001B;
   background: rgba(179, 0, 27, 0.2);
+  color: #FFCCCC;
+  text-shadow: 0 0 8px #B3001B;
+  transform: translateY(-2px);
+  animation: pulseGlow 1.5s infinite;
 }
 
-/* Main container */
+/* =======================
+   Main Content
+========================== */
 main {
   padding: 2rem;
   max-width: 900px;
   margin: auto;
 }
 
-/* Cards or panels */
+/* =======================
+   Cards
+========================== */
 .card {
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid #B3001B;
@@ -56,13 +71,20 @@ main {
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(179, 0, 27, 0.2);
   margin-bottom: 2rem;
+  transition: all 0.4s ease-in-out;
+}
+.card:hover {
+  animation: flicker 1.5s infinite;
+  border-color: #FF0033;
+  transform: scale(1.01);
 }
 
-/* Forms */
+/* =======================
+   Forms & Buttons
+========================== */
 form label {
   display: block;
   margin-top: 1rem;
-  color: #F3E8E2;
 }
 input, textarea, select, button {
   width: 100%;
@@ -80,16 +102,23 @@ button {
 }
 button:hover {
   background-color: #990015;
+  animation: pulseGlow 2s infinite;
+  transform: scale(1.05);
+  border: 1px solid #FF0033;
 }
 
-/* Flash messages */
+/* =======================
+   Flash Messages
+========================== */
 .flash {
   list-style: none;
   padding: 0;
   color: #ffcccc;
 }
 
-/* Tables */
+/* =======================
+   Tables
+========================== */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -105,16 +134,13 @@ th {
   background-color: #2e000b;
 }
 
+/* =======================
+   Animations
+========================== */
 @keyframes pulseGlow {
-  0% {
-    box-shadow: 0 0 5px #B3001B;
-  }
-  50% {
-    box-shadow: 0 0 15px #FF0033, 0 0 30px #FF0033;
-  }
-  100% {
-    box-shadow: 0 0 5px #B3001B;
-  }
+  0%   { box-shadow: 0 0 5px #B3001B; }
+  50%  { box-shadow: 0 0 15px #FF0033, 0 0 30px #FF0033; }
+  100% { box-shadow: 0 0 5px #B3001B; }
 }
 
 @keyframes flicker {
@@ -124,42 +150,3 @@ th {
   80% { opacity: 0.9; }
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-nav a {
-  position: relative;
-  color: #F3E8E2;
-  margin: 0 15px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-nav a:hover {
-  color: #FFCCCC;
-  text-shadow: 0 0 8px #B3001B;
-  transform: translateY(-2px);
-  animation: pulseGlow 1.5s infinite;
-}
-
-.card:hover {
-  animation: flicker 1.5s infinite;
-  border-color: #FF0033;
-  transform: scale(1.01);
-  transition: all 0.4s ease-in-out;
-}
-
-button:hover {
-  animation: pulseGlow 2s infinite;
-  transform: scale(1.05);
-  border: 1px solid #FF0033;
-}
-
-.logo img {
-  transition: all 0.4s ease-in-out;
-}
-.logo img:hover {
-  animation: pulseGlow 2s infinite;
-}
