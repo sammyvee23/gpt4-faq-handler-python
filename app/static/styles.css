@@ -20,13 +20,13 @@ header {
   box-shadow: 0 4px 12px rgba(255, 0, 55, 0.3);
 }
 
-.logo img {
+.logo-img {
   width: 140px;
   border-radius: 10px;
   box-shadow: 0 0 15px #B3001B;
   transition: all 0.4s ease-in-out;
 }
-.logo img:hover {
+.logo-img:hover {
   animation: pulseGlow 2s infinite;
 }
 
