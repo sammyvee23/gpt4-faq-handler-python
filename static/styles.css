@@ -1,0 +1,152 @@
+/* =======================
+   Global Base Layout
+========================== */
+body {
+  background: linear-gradient(to bottom, #1a0006, #000000);
+  color: #F3E8E2;
+  font-family: 'Merriweather', serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* =======================
+   Header & Navigation
+========================== */
+header {
+  background: #1a0006;
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 2px solid #B3001B;
+  box-shadow: 0 4px 12px rgba(255, 0, 55, 0.3);
+}
+
+.logo-img {
+  width: 140px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #B3001B;
+  transition: all 0.4s ease-in-out;
+}
+.logo-img:hover {
+  animation: pulseGlow 2s infinite;
+}
+
+nav {
+  margin-top: 0.5rem;
+}
+nav a {
+  color: #F3E8E2;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  padding: 8px 14px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+nav a:hover {
+  border-color: #B3001B;
+  background: rgba(179, 0, 27, 0.2);
+  color: #FFCCCC;
+  text-shadow: 0 0 8px #B3001B;
+  transform: translateY(-2px);
+  animation: pulseGlow 1.5s infinite;
+}
+
+/* =======================
+   Main Content
+========================== */
+main {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* =======================
+   Cards
+========================== */
+.card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #B3001B;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(179, 0, 27, 0.2);
+  margin-bottom: 2rem;
+  transition: all 0.4s ease-in-out;
+}
+.card:hover {
+  animation: flicker 1.5s infinite;
+  border-color: #FF0033;
+  transform: scale(1.01);
+}
+
+/* =======================
+   Forms & Buttons
+========================== */
+form label {
+  display: block;
+  margin-top: 1rem;
+}
+input, textarea, select, button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.3rem;
+  background: #2e000b;
+  border: 1px solid #B3001B;
+  color: #F3E8E2;
+  border-radius: 5px;
+}
+button {
+  margin-top: 1rem;
+  background-color: #B3001B;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #990015;
+  animation: pulseGlow 2s infinite;
+  transform: scale(1.05);
+  border: 1px solid #FF0033;
+}
+
+/* =======================
+   Flash Messages
+========================== */
+.flash {
+  list-style: none;
+  padding: 0;
+  color: #ffcccc;
+}
+
+/* =======================
+   Tables
+========================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(255,255,255,0.03);
+  margin-top: 1rem;
+}
+th, td {
+  padding: 0.75rem;
+  border: 1px solid #B3001B;
+  text-align: left;
+}
+th {
+  background-color: #2e000b;
+}
+
+/* =======================
+   Animations
+========================== */
+@keyframes pulseGlow {
+  0%   { box-shadow: 0 0 5px #B3001B; }
+  50%  { box-shadow: 0 0 15px #FF0033, 0 0 30px #FF0033; }
+  100% { box-shadow: 0 0 5px #B3001B; }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+  60% { opacity: 1; }
+  80% { opacity: 0.9; }
+}
+
