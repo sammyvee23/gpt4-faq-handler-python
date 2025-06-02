@@ -15,9 +15,21 @@ body {
 header {
   background: #1a0006;
   text-align: center;
-  padding: 1rem 0;
+  padding: 2rem 0 1rem;
   border-bottom: 2px solid #B3001B;
   box-shadow: 0 4px 12px rgba(255, 0, 55, 0.3);
+}
+
+.logo-section {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.site-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  color: #F3E8E2;
+  margin-bottom: 0.3rem;
 }
 
 .logo-img {
@@ -25,11 +37,30 @@ header {
   border-radius: 10px;
   box-shadow: 0 0 15px #B3001B;
   transition: all 0.4s ease-in-out;
+  display: block;
+  margin: 0 auto;
 }
 .logo-img:hover {
   animation: pulseGlow 2s infinite;
 }
 
+.subtitle-animated {
+  font-family: 'Merriweather', serif;
+  font-size: 1.1rem;
+  color: #ffcccc;
+  margin-top: 1.2rem;
+  margin-bottom: 1.5rem;
+  animation: shimmer 4s ease-in-out infinite, fadeInSubtitle 2s ease-in-out forwards;
+  background: linear-gradient(to right, #ffcccc, #ffffff, #ffcccc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  display: inline-block;
+}
+
+/* =======================
+   Navigation
+========================== */
 nav {
   margin-top: 0.5rem;
 }
@@ -150,36 +181,9 @@ th {
   80% { opacity: 0.9; }
 }
 
-/* Title styling */
-.site-title {
-  font-family: 'Cinzel', serif;
-  font-size: 2rem;
-  color: #F3E8E2;
-  margin-bottom: 0.3rem;
-}
-
-/* Subtitle shimmer animation */
-.subtitle-animated {
-  font-family: 'Merriweather', serif;
-  font-size: 1rem;
-  color: #ffcccc;
-  margin-top: 0.5rem;
-  animation: shimmer 4s ease-in-out infinite;
-  background: linear-gradient(to right, #ffcccc, #ffffff, #ffcccc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% auto;
-  display: inline-block;
-}
-
 @keyframes shimmer {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
-}
-
-.subtitle-animated {
-  opacity: 0;
-  animation: fadeInSubtitle 2s ease-in-out forwards;
 }
 
 @keyframes fadeInSubtitle {
