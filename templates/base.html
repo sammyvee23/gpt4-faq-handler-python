@@ -3,14 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <title>Rosa AI Dashboard</title>
+  
+  <!-- Styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
   <header class="header">
     <div class="logo">
+      <!-- Heading text above logo -->
+      <h1 style="font-family: 'Cinzel', serif; font-size: 2rem; color: #F3E8E2; margin: 0;">Rosa AI</h1>
       <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo-img">
     </div>
+
     <nav class="nav">
       <a href="{{ url_for('public_dashboard') }}">📊 Dashboard</a>
       <a href="{{ url_for('make_call') }}">📞 Make Call</a>
@@ -24,4 +34,5 @@
   </main>
 </body>
 </html>
+
 
