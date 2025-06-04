@@ -11,7 +11,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 def generate_call_script(prompt):
     try:
         response = client.chat.completions.create(
-            model="gpt-4",  # or "gpt-3.5-turbo" if preferred
+            model="gpt-3.5-turbo", 
             messages=[
                 {"role": "system", "content": "You are a professional AI phone assistant that communicates clearly and politely."},
                 {"role": "user", "content": prompt}
