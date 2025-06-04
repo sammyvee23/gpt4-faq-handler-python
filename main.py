@@ -59,14 +59,18 @@ def review_ui():
 
 @app.route('/test_script')
 def test_script():
-    from app.script_generator import generate_call_script
-    test_prompt = "Call a donor and thank them for their contribution, then tell them about our next event on Friday."
-    script = generate_call_script(test_prompt)
-    return f"<pre>{script}</pre>"
+    try:
+        from app.script_generator import generate_call_script
+        test_prompt = "Call a donor and thank them for their contribution, then tell them about our next event on Friday."
+        script = generate_call_script(test_prompt)
+        return f"<pre>{script}</pre>"
+    except Exception as e:
+        return f"<pre>Error generating script: {e}</pre>"
 
 @app.route('/twiml_script', methods=['GET'])
 def twiml_script():
     script = request.args.get('text', 'Hello! This is an AI-powered call from our service. Thank you!')
+    print(f"📡 TwiML is saying: {script}")
     response = VoiceResponse()
     response.say(script, voice='alice')
     return Response(str(response), mimetype='text/xml')
@@ -74,24 +78,33 @@ def twiml_script():
 @app.route('/make_call', methods=['GET', 'POST'])
 def make_call():
     if request.method == 'POST':
-        phone = request.form['phone_number']
-        prompt = request.form['script']
+        try:
+            phone = request.form['phone_number']
+            prompt = request.form['script']
+            print(f"📞 Calling {phone} with script prompt: {prompt}")
 
-        from app.script_generator import generate_call_script
-        message = generate_call_script(prompt)
-        script_url = url_for('twiml_script', text=message, _external=True)
-        call_sid = make_outbound_call(phone, script_url)
+            from app.script_generator import generate_call_script
+            message = generate_call_script(prompt)
+            print(f"🧠 Generated AI script: {message}")
 
-        db['call_logs'].insert_one({
-            'to': phone,
-            'prompt': prompt,
-            'generated_script': message,
-            'call_sid': call_sid,
-            'timestamp': datetime.utcnow()
-        })
+            script_url = url_for('twiml_script', text=message, _external=True)
+            call_sid = make_outbound_call(phone, script_url)
 
-        flash(f"Call placed to {phone}. SID: {call_sid}")
-        return redirect(url_for('make_call'))
+            db['call_logs'].insert_one({
+                'to': phone,
+                'prompt': prompt,
+                'generated_script': message,
+                'call_sid': call_sid,
+                'timestamp': datetime.utcnow()
+            })
+
+            flash(f"Call placed to {phone}. SID: {call_sid}")
+            return redirect(url_for('make_call'))
+
+        except Exception as e:
+            print(f"❌ Error during call: {e}")
+            flash("There was an error placing the call. Please try again.")
+            return redirect(url_for('make_call'))
 
     return render_template('call.html', title="Make a Phone Call")
 
@@ -107,7 +120,6 @@ def settings():
         name = request.form['name']
         email = request.form['email']
 
-        # Update in database
         users_collection.update_one(
             {"_id": current_user.id},
             {"$set": {"username": name, "email": email}}
@@ -129,6 +141,7 @@ def call_analysis():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
 
 
 
